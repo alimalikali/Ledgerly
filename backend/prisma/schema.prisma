@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String        @id @default(cuid())
+  name            String
+  email           String        @unique
+  passwordHash    String
+  displayCurrency String        @default("PKR") // "PKR" | "USD"
+  createdAt       DateTime      @default(now())
+  categories      Category[]
+  transactions    Transaction[]
+}
+
+model Category {
+  id           String        @id @default(cuid())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name         String
+  type         String // "income" | "expense"
+  color        String // hex, e.g. "#f97316"
+  createdAt    DateTime      @default(now())
+  transactions Transaction[]
+
+  @@unique([userId, type, name])
+  @@index([userId])
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  description String
+  amount      Decimal
+  currency    String // "USD" | "PKR"
+  type        String // "income" | "expense" | "savings" (mirrors category.type for fast queries)
+  date        DateTime
+  createdAt   DateTime @default(now())
+
+  @@index([userId, date])
+  @@index([categoryId])
+}
