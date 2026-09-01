@@ -1,9 +1,9 @@
 import { Router } from "express";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
-import { prisma } from "../prisma";
-import { clearAuthCookie, requireAuth, setAuthCookie, type AuthedRequest } from "../auth";
-import { DEFAULT_CATEGORIES } from "../defaults";
+import { prisma } from "../prisma.js";
+import { clearAuthCookie, requireAuth, setAuthCookie, type AuthedRequest } from "../auth.js";
+import { DEFAULT_CATEGORIES } from "../defaults.js";
 
 export const authRouter = Router();
 
