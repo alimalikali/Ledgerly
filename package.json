@@ -2,11 +2,11 @@
   "name": "expensetracker-desktop",
   "private": true,
   "version": "1.0.0",
-  "description": "Ledgerly expense tracker — desktop app (Electron)",
+  "description": "Ledgerly expense tracker \u2014 desktop app (Electron)",
   "main": "electron/main.js",
   "scripts": {
     "postinstall": "npm install --prefix backend && npm install --prefix frontend",
-    "desktop": "npm --prefix backend run build && npm --prefix frontend run build && electron electron/main.js --no-sandbox"
+    "desktop": "concurrently -k -n api,web,app -c blue,green,magenta \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\" \"wait-on http://localhost:5173 && electron electron/main.js --no-sandbox\""
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
