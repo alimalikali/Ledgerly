@@ -5,6 +5,7 @@
   "description": "Ledgerly expense tracker — desktop app (Electron)",
   "main": "electron/main.js",
   "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
     "desktop": "npm --prefix backend run build && npm --prefix frontend run build && electron electron/main.js --no-sandbox"
   },
   "devDependencies": {
