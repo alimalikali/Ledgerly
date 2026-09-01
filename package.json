@@ -5,7 +5,7 @@
   "description": "Ledgerly expense tracker — desktop app (Electron)",
   "main": "electron/main.js",
   "scripts": {
-    "desktop": "concurrently -k -n backend,frontend,electron -c blue,magenta,green \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\" \"wait-on http://localhost:5173 && electron electron/main.js\""
+    "desktop": "npm --prefix backend run build && npm --prefix frontend run build && electron electron/main.js --no-sandbox"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
