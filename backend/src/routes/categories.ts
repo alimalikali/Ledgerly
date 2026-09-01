@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { z } from "zod";
 import type { Category } from "@prisma/client";
-import { prisma } from "../prisma.js";
-import { requireAuth, type AuthedRequest } from "../auth.js";
+import { prisma } from "../prisma";
+import { requireAuth, type AuthedRequest } from "../auth";
 
 export const categoriesRouter = Router();
 categoriesRouter.use(requireAuth);
