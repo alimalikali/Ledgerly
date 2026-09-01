@@ -47,20 +47,3 @@ cd frontend && npm run dev     # app  → http://localhost:5173
 
 Sign up, and starter categories are created for you. Your data lives in
 `backend/prisma/dev.db` — gitignored, so back it up yourself.
-
-## 📖 More
-
-- 📡 API reference → [`backend/README.md`](backend/README.md)
-- ✅ End-to-end check → `cd backend && npm run smoke`
-- 📦 Import from an old Postgres database:
-  ```bash
-  cd backend && SOURCE_PG_URL="postgresql://user:pass@localhost:5432/expense" npm run migrate:data
-  ```
-
-## 🩹 Troubleshooting
-
-| Problem | Fix |
-| --- | --- |
-| Electron window won't open on Linux | The `desktop` script already passes `--no-sandbox` |
-| Every API call returns 500 | You skipped `cp .env.example .env` in `backend/` |
-| `@prisma/client did not initialize` | `cd backend && npx prisma generate` |
