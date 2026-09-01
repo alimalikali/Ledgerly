@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
     "migrate": "prisma migrate dev",
